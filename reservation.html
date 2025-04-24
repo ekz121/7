@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selera Nusantara - Reservasi</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background: #f9fafb;
+    color: #333;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.navbar {
+    background: #ffffff;
+    padding: 1rem 2rem;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #16a34a;
+}
+
+.hamburger {
+    display: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: #16a34a;
+}
+
+.nav-menu {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+}
+
+.nav-menu li a {
+    color: #333;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    transition: color 0.3s ease, background 0.3s ease;
+}
+
+.nav-menu li a:hover,
+.nav-menu li a.active {
+    color: #ffffff;
+    background: #16a34a;
+    border-radius: 5px;
+}
+
+.content {
+    max-width: 1200px;
+    margin: 80px auto 0;
+    padding: 2rem;
+    flex: 1 0 auto;
+}
+
+h1 {
+    color: #16a34a;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-size: 2rem;
+}
+
+.hero {
+    text-align: center;
+    padding: 3rem 0;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    color: #555;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    background: #16a34a;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+.cta-button:hover {
+    background: #15803d;
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.menu-item {
+    background: #ffffff;
+    padding: 1rem;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.menu-item:hover {
+    transform: translateY(-5px);
+}
+
+.menu-item img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
+
+.menu-item h3 {
+    color: #16a34a;
+    margin-bottom: 0.5rem;
+}
+
+.menu-item p {
+    color: #555;
+    font-size: 0.9rem;
+}
+
+.reservation-form, .contact-form {
+    max-width: 600px;
+    margin: 2rem auto;
+    background: #ffffff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #16a34a;
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #16a34a;
+}
+
+.form-group textarea {
+    height: 100px;
+    resize: none;
+}
+
+.error {
+    color: #dc2626;
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+    display: none;
+}
+
+button {
+    width: 100%;
+    padding: 0.75rem;
+    background: #16a34a;
+    border: none;
+    border-radius: 5px;
+    color: #ffffff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background: #15803d;
+}
+
+.contact-info {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.contact-info p {
+    color: #555;
+    margin-bottom: 0.5rem;
+}
+
+.footer {
+    background: #ffffff;
+    padding: 2rem 1rem;
+    text-align: center;
+    margin-top: auto;
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer .logo {
+    font-size: 1.6rem;
+    color: #16a34a;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.footer p {
+    color: #555;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .hamburger {
+        display: block;
+    }
+
+    .nav-menu {
+        display: none;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background: #ffffff;
+        flex-direction: column;
+        padding: 1rem;
+        text-align: center;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-menu.active {
+        display: flex;
+    }
+
+    .content {
+        padding: 1rem;
+        margin-top: 60px;
+    }
+
+    .hero {
+        padding: 2rem 1rem;
+    }
+
+    .reservation-form, .contact-form {
+        padding: 1.5rem;
+    }
+}
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="brand">Selera Nusantara</div>
+            <div class="hamburger">☰</div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Beranda</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="reservation.html" class="active">Reservasi</a></li>
+                <li><a href="contact.html">Kontak</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="content">
+        <section id="reservation">
+            <h1>Formulir Reservasi</h1>
+            <div class="reservation-form">
+                <form id="reservationForm" onsubmit="return handleReservation(event)">
+                    <div class="form-group">
+                        <label for="fullName">Nama Lengkap</label>
+                        <input type="text" id="fullName" name="fullName" required>
+                        <div class="error" id="fullNameError">Nama lengkap wajib diisi</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                        <div class="error" id="emailError">Masukkan email yang valid</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Tanggal Reservasi</label>
+                        <input type="date" id="date" name="date" required>
+                        <div class="error" id="dateError">Tanggal wajib diisi</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="time">Waktu Reservasi</label>
+                        <input type="time" id="time" name="time" required>
+                        <div class="error" id="timeError">Waktu wajib diisi</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="guests">Jumlah Tamu</label>
+                        <input type="number" id="guests" name="guests" min="1" required>
+                        <div class="error" id="guestsError">Jumlah tamu harus lebih dari 0</div>
+                    </div>
+                    <button type="submit">Kirim Reservasi</button>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="logo">Selera Nusantara</div>
+            <p>© 2025 Selera Nusantara. Hak cipta dilindungi.</p>
+            <div class="contact-info">
+                <p>Hubungi kami: +62 812 3456 7890</p>
+                <p>Alamat: Jl. Rasa Nusantara No. 88, Jakarta</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
